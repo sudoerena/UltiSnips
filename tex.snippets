@@ -1,18 +1,24 @@
 # Inspired by Gilles Castel
 
+# Sympy
+snippet sympy "sympy block" w
+sympy $1 sympy$0
+endsnippet 
 
-# theorem things
-# \newcommand*{\myproofname}{My proof}
-# \newenvironment{myproof}[1][\myproofname]{\begin{proof}[#1]\renewcommand*{\qedsymbol}{\(\blacksquare\)}}{\end{proof}}
-
-
-# \newtheorem{theorem}{Theorem}
-# \newtheorem{claim}{Claim}[theorem]
-# % ^ 1.1
-# % \newtheorem{claim}[theorem]{Claim}
-# % ^ 2
-# \newenvironment{proof}{\emph{Proof.}}{\hfill $\square$}
-
+priority 10000
+snippet 'sympy(.*)sympy' "evaluate sympy" wr
+`!p
+from sympy import *
+x, y, x, t = symbols('x y z t')
+k, m, n = symbols('k m n', integer = True)
+f, g, h = symbols('f g h', cls = Function)
+init_printing()
+snip.rv = eval('latex(' + match.group(1).replace('\\', '') \
+	.replace('^', '**') \
+	.replace('{', '(') \
+	.replace('}', ')') + ')')
+`
+endsnippet 
 
 snippet _article "Article Template" bA
 \documentclass{article}
@@ -53,7 +59,6 @@ else:
 `$2
 endsnippet
 
-# LET PYTHON FIGURE OUT SPACES
 snippet df "Text in Math" wA
 \text{$1} $0
 endsnippet 
@@ -107,39 +112,15 @@ endsnippet
 
 # Limits
 snippet *lim "Limit" wA
-\\lim\\limits_{$1 \\to $2} $0
+\\lim_{$1 \\to $2} $0
 endsnippet 
 
 snippet +lim "Infinite Limit" wA
-\\lim\\limits_{$1 \\to \\infty} $0
+\\lim_{$1 \\to \\infty} $0
 endsnippet 
 
 snippet -lim "Infinite Limit (Negative)" wA
-\\lim\\limits_{$1 \\to -\\infty} $0
-endsnippet 
-
-# Sympy
-snippet sympy "sympy block" w
-sympy $1 sympy$0
-endsnippet 
-
-priority 10000
-snippet 'sympy(.*)sympy' "evaluate sympy" wr
-`!p
-from sympy import *
-x, y, x, t = symbols('x y z t')
-k, m, n = symbols('k m n', integer = True)
-f, g, h = symbols('f g h', cls = Function)
-init_printing()
-snip.rv = eval('latex(' + match.group(1).replace('\\', '') \
-	.replace('^', '**') \
-	.replace('{', '(') \
-	.replace('}', ')') + ')')
-`
-endsnippet 
-
-snippet \tbs "Text Backslash" wA
-\textbackslash 
+\\lim_{$1 \\to -\\infty} $0
 endsnippet 
 
 snippet tetand "text and" wA
@@ -157,13 +138,6 @@ endsnippet
 snippet _QED "Tombstone" bA
 %
 \hfill $\square$ $0
-endsnippet 
-
-snippet _proof "thm environments preamble" bA
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{claim}{Claim}[theorem]
-\newenvironment{proof}{\emph{Proof.}}{\hfill $\square$} $0
 endsnippet 
 
 # mathbb
@@ -210,18 +184,3 @@ endsnippet
 snippet \l* "ell" iA
 \ell$0
 endsnippet 
-
-
-# The Obsolete
-
-# snippet '(\d+)\/(\d+)(\s)' "Automatic Fraction" wrA
-# \frac{`!p snip.rv = match.group(1)`}{`!p snip.rv = match.group(2)`}`!p snip.rv = match.group(3)`$0
-# endsnippet 
-# 
-# snippet '(\d+)\/(\d+)' "Tabbed Fraction" wr
-# \frac{`!p snip.rv = match.group(1)`}{`!p snip.rv = match.group(2)`}$0
-# endsnippet 
-
-# snippet ( "bracket" A
-# ($1)$0
-# endsnippet
