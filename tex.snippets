@@ -25,7 +25,7 @@ snippet _article "Article Template" bA
 \end{document} 
 endsnippet
 
-snippet _pack "usepackage" bA
+snippet _use "usepackage" bA
 \usepackage{$1}$0
 endsnippet 
 
@@ -35,7 +35,7 @@ snippet _beg "begin{} / end{}" bA
 \end{$1} $0
 endsnippet
 
-snippet cx "Inline Math" wA
+snippet fd "Inline Math" wA
 $${1}$`!p
 if t[2] and t[2][0] not in [';', ':', '\'', '/', '\\', '~', ',', '.', '?', '-', ' ', ')', '}', ']', ':']:
 	snip.rv = ' '
@@ -44,7 +44,7 @@ else:
 `$2
 endsnippet
 
-snippet MK "Bold Inline Math" wA
+snippet FD "Bold Inline Math" wA
 $\mathbf{${1}}$`!p
 if t[2] and t[2][0] not in [';',':', '\'', '/', '\\', '~', ',', '.', '?', '-', ' ', ')', '}', ']', ':']:
 	snip.rv = ' '
@@ -54,7 +54,7 @@ else:
 endsnippet
 
 # LET PYTHON FIGURE OUT SPACES
-snippet ml "Text in Math" wA
+snippet df "Text in Math" wA
 \text{$1} $0
 endsnippet 
 
@@ -142,19 +142,15 @@ snippet \tbs "Text Backslash" wA
 \textbackslash 
 endsnippet 
 
-snippet <= "less than or equal to" iA
-\leq
-endsnippet 
-
-snippet >= "greater than or equal to" iA
-\geq
-endsnippet 
-
 snippet tetand "text and" wA
 \text{ and }
 endsnippet 
 
-snippet _fb "bold framebox" wA
+snippet _fb "framebox" wA
+\fbox{$1}$0
+endsnippet 
+
+snippet _FB "bold framebox" wA
 \fbox{\textbf{$1}}$0
 endsnippet 
 
