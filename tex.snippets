@@ -101,6 +101,14 @@ snippet '\^(\d\d)' "auto superscript" wrA
 ^{`!p snip.rv = match.group(1)`}
 endsnippet
 
+snippet __ "wrap subscript" iA
+_{$1}$0
+endsnippet 
+
+snippet ^^ "wrap superscript" iA
+^{$1}$0
+endsnippet 
+
 # Fractions
 snippet // "Fraction" iA
 \\frac{$1}{$2}$0
@@ -111,15 +119,15 @@ snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" irA
 endsnippet
 
 # Limits
-snippet *lim "Limit" wA
+snippet *lim "Limit" iA
 \\lim_{$1 \\to $2} $0
 endsnippet 
 
-snippet +lim "Infinite Limit" wA
+snippet +lim "Infinite Limit" iA
 \\lim_{$1 \\to \\infty} $0
 endsnippet 
 
-snippet -lim "Infinite Limit (Negative)" wA
+snippet -lim "Infinite Limit (Negative)" iA
 \\lim_{$1 \\to -\\infty} $0
 endsnippet 
 
@@ -155,6 +163,10 @@ endsnippet
 
 snippet \Q "rationals" iA
 \mathbb{Q}$0
+endsnippet 
+
+snippet \C "complex" iA
+\mathbb{C}$0
 endsnippet 
 
 snippet \P "power set" iA
