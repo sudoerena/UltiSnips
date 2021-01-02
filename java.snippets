@@ -1,3 +1,6 @@
+# NOTE:
+#	figure out how to add space before { using python
+
 snippet _temp "template" bA
 import java.util.*;
 
@@ -16,3 +19,12 @@ snippet +print "auto println" wA
 System.out.println($1);$0
 endsnippet 
 
+snippet {{ "code block" iA
+{
+	${1}
+}$0
+endsnippet 
+
+snippet nn "new line" bA
+System.out.println();$0
+endsnippet 
