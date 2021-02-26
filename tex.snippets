@@ -1,4 +1,17 @@
 # Inspired by Gilles Castel
+global !p
+def math():
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+def comment(): 
+    return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+    return x != '0' and x != '0'
+
+endglobal
+
 
 # Sympy
 snippet sympy "sympy block" w
@@ -33,6 +46,22 @@ endsnippet
 
 snippet _use "usepackage" bA
 \usepackage{$1}$0
+endsnippet 
+
+snippet _sec "section" bA
+\section{$1}$0
+endsnippet 
+
+snippet +sec "section*" bA
+\section*{$1}$0
+endsnippet 
+
+snippet nn "vspace" bA
+\vspace{.1in}$0
+endsnippet 
+
+snippet mm "small vspace" bA
+\vspace{.05in}$0
 endsnippet 
 
 snippet _beg "begin{} / end{}" bA
@@ -81,69 +110,95 @@ snippet dmt "Display Math - blank (em(p)tee)" bA
 \] $0
 endsnippet 
 
+context math()
 snippet '([^A-Za-z][A-Za-z])(\d)' "auto subscript" wrA
 `!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
 endsnippet
 
+context math()
 snippet '(^[A-Za-z])(\d)' "auto subscript" wrA
 `!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
 endsnippet
 
+context math()
 snippet '([^A-Za-z][A-Za-z])_(\d\d)' "auto subscript2" wrA
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
 
+context math()
 snippet '(^[A-Za-z])_(\d\d)' "auto subscript2" wrA
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
 
+context math()
 snippet '\^(\d\d)' "auto superscript" wrA
 ^{`!p snip.rv = match.group(1)`}
 endsnippet
 
+context math()
 snippet __ "wrap subscript" iA
 _{$1}$0
 endsnippet 
 
+context math()
 snippet ^^ "wrap superscript" iA
 ^{$1}$0
 endsnippet 
 
+context math()
+snippet sr "square root" iA
+\sqrt{$1}$0
+endsnippet 
+
+context math()
+snippet cr "cube root" iA
+\sqrt[3]{$1}$0
+endsnippet 
+
 # Fractions
+context math()
 snippet // "Fraction" iA
 \\frac{$1}{$2}$0
 endsnippet 
 
+context math()
 snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Fraction" irA
 \\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
 # Limits
+context math()
 snippet *lim "Limit" iA
 \\lim_{$1 \\to $2} $0
 endsnippet 
 
+context math()
 snippet +lim "Infinite Limit" iA
 \\lim_{$1 \\to \\infty} $0
 endsnippet 
 
+context math()
 snippet -lim "Infinite Limit (Negative)" iA
 \\lim_{$1 \\to -\\infty} $0
 endsnippet 
 
 # Sums
+context math()
 snippet *sum "Sum" iA
 \\sum_{$1 = $2}^{$3} $0
 endsnippet 
 
+context math()
 snippet )sum "Sum from Zero" iA
 \\sum_{$1 = 0}^{$2} $0
 endsnippet 
 
+context math()
 snippet +sum "Infinite Sum" iA
 \\sum_{$1 = 0}^{\infty} $0
 endsnippet 
 
+context math()
 snippet -sum "Infinite Sum (Negative)" iA
 \\sum_{$1 = 0}^{-\infty} $0
 endsnippet 
@@ -161,56 +216,93 @@ snippet _FB "bold framebox" wA
 \fbox{\textbf{$1}}$0
 endsnippet 
 
-snippet _QED "Tombstone" bA
+snippet _qed "Tombstone" bA
 %
 \hfill $\square$ $0
 endsnippet 
 
 # mathbb
+context math()
+snippet mbb "MATHBB" iA
+\mathbb{$1}$0
+endsnippet 
+
+context math()
 snippet \R "reals" iA
 \mathbb{R}$0
 endsnippet 
 
+context math()
 snippet \Z "integers" iA
 \mathbb{Z}$0
 endsnippet 
 
+context math()
 snippet \N "naturals" iA
 \mathbb{N}$0
 endsnippet 
 
+context math()
 snippet \Q "rationals" iA
 \mathbb{Q}$0
 endsnippet 
 
+context math()
 snippet \C "complex" iA
 \mathbb{C}$0
 endsnippet 
 
+context math()
+snippet \F "field" iA
+\mathbb{F}$0
+endsnippet 
+
+context math()
 snippet \P "power set" iA
 \mathcal{P}$0
 endsnippet 
 
+context math()
 snippet \a* "alpha" iA
 \alpha$0
 endsnippet 
 
+context math()
 snippet \b* "beta" iA
 \beta$0
 endsnippet 
 
+context math()
 snippet \g* "gamma" iA
 \gamma$0
 endsnippet 
 
+context math()
 snippet \d* "delta" iA
 \delta$0
 endsnippet 
 
+context math()
 snippet \e* "epsilon" iA
 \epsilon$0
 endsnippet 
 
+context math()
 snippet \l* "ell" iA
 \ell$0
+endsnippet 
+
+context math()
+snippet \span "span (full)" iA
+\text{span}$0
+endsnippet 
+
+context math()
+snippet \rank "rank" iA
+\text{rank}$0
+endsnippet 
+
+context math()
+snippet \nullity "nullity" iA
+\text{nullity}$0
 endsnippet 
