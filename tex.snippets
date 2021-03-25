@@ -56,12 +56,19 @@ snippet +sec "section*" bA
 \section*{$1}$0
 endsnippet 
 
+snippet NN "newpage" bA
+\newpage
+$0
+endsnippet 
+
 snippet nn "vspace" bA
-\vspace{.1in}$0
+\vspace{.1in}
+$0
 endsnippet 
 
 snippet mm "small vspace" bA
-\vspace{.05in}$0
+\vspace{.05in}
+$0
 endsnippet 
 
 snippet _beg "begin{} / end{}" bA
@@ -79,6 +86,115 @@ else:
 `$2
 endsnippet
 
+snippet kl "align*" bA
+\begin{align*}
+	$1
+\end{align*} $0
+endsnippet 
+
+snippet ii "enumerate" bA
+\begin{enumerate}
+	$1
+\end{enumerate} $0
+endsnippet 
+
+snippet oo "itemize" bA
+\begin{itemize}
+	$1
+\end{itemize} $0
+endsnippet
+
+snippet jj "item" bA
+\item
+	$0
+endsnippet 
+
+context math()
+snippet lk "intertext in align" bA
+\intertext{
+	$1
+} $0
+endsnippet 
+
+context math()
+snippet rr "bracket matrix" bA
+\begin{bmatrix}
+	$1
+\end{bmatrix} $0
+endsnippet 
+
+context math()
+snippet br "bracket matrix" bA
+\begin{bmatrix}
+	$1
+\end{bmatrix} $0
+endsnippet 
+
+context math()
+snippet pr "paren matrix" bA
+\begin{pmatrix}
+	$1
+\end{pmatrix} $0
+endsnippet 
+
+context math()
+snippet ar "augmented paren matrix" bA
+\begin{pmatrix}[$1|$1]
+	$2
+\end{pmatrix} $0
+endsnippet 
+
+context math()
+snippet ab "augmented bracket matrix" bA
+\begin{bmatrix}[$1|$1]
+	$2
+\end{bmatrix} $0
+endsnippet 
+
+context math()
+snippet ap "augmented paren matrix" bA
+\begin{pmatrix}[$1|$1]
+	$2
+\end{pmatrix} $0
+endsnippet 
+
+context math()
+snippet ee "blank matrix" bA
+\begin{matrix}
+	$1
+\end{matrix} $0
+endsnippet 
+
+context math()
+snippet er "blank row" bA
+~ \\\\ $0
+endsnippet 
+
+context math()
+snippet re "xrightarrow" bA
+\xrightarrow{$1} \\\\ $0
+endsnippet 
+
+context math()
+snippet lr "left right arrow" wA
+\leftrightarrow 
+endsnippet 
+
+context math()
+snippet <> "left right arrow" iA
+\leftrightarrow 
+endsnippet 
+
+context math()
+snippet << "left arrow" iA
+\leftarrow 
+endsnippet 
+
+context math()
+snippet >> "right arrow" iA
+\rightarrow
+endsnippet 
+
 snippet FD "Bold Inline Math" wA
 $\mathbf{${1}}$`!p
 if t[2] and t[2][0] not in [';',':', '\'', '/', '\\', '~', ',', '.', '?', '-', ' ', ')', '}', ']', ':']:
@@ -88,6 +204,7 @@ else:
 `$2
 endsnippet
 
+context math()
 snippet df "Text in Math" wA
 \text{$1} $0
 endsnippet 
@@ -294,15 +411,30 @@ endsnippet
 
 context math()
 snippet \span "span (full)" iA
-\text{span}$0
+\text{span\,}$0
 endsnippet 
 
 context math()
 snippet \rank "rank" iA
-\text{rank}$0
+\text{rank\,}$0
 endsnippet 
 
 context math()
 snippet \nullity "nullity" iA
-\text{nullity}$0
+\text{nullity\,}$0
+endsnippet 
+
+context math()
+snippet Null "Null space" iA
+\text{Null\,}$0
+endsnippet 
+
+context math()
+snippet Row "Row space" iA
+\text{Row\,}$0
+endsnippet 
+
+context math()
+snippet Col "Column space" iA
+\text{Col\,}$0
 endsnippet 
