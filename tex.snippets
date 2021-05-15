@@ -12,27 +12,6 @@ def env(name):
 
 endglobal
 
-
-# Sympy
-snippet sympy "sympy block" w
-sympy $1 sympy$0
-endsnippet 
-
-priority 10000
-snippet 'sympy(.*)sympy' "evaluate sympy" wr
-`!p
-from sympy import *
-x, y, x, t = symbols('x y z t')
-k, m, n = symbols('k m n', integer = True)
-f, g, h = symbols('f g h', cls = Function)
-init_printing()
-snip.rv = eval('latex(' + match.group(1).replace('\\', '') \
-	.replace('^', '**') \
-	.replace('{', '(') \
-	.replace('}', ')') + ')')
-`
-endsnippet 
-
 snippet _article "Article Template" bA
 \documentclass{article}
 
@@ -57,8 +36,7 @@ snippet +sec "section*" bA
 endsnippet 
 
 snippet NN "newpage" bA
-\newpage
-$0
+\newpage $0
 endsnippet 
 
 snippet nn "vspace" bA
@@ -157,6 +135,20 @@ snippet ap "augmented paren matrix" bA
 	$2
 \end{pmatrix} $0
 endsnippet 
+
+context math()
+snippet dr "determinant matrix" bA
+\begin{vmatrix}
+	$1
+\end{vmatrix} $0
+endsnippet
+
+context math()
+snippet dd "determinant matrix" bA
+\begin{vmatrix}
+	$1
+\end{vmatrix} $0
+endsnippet
 
 context math()
 snippet ee "blank matrix" bA
@@ -312,7 +304,7 @@ endsnippet
 
 context math()
 snippet +sum "Infinite Sum" iA
-\\sum_{$1 = 0}^{\infty} $0
+\\sum_{$1 = $2}^{\infty} $0
 endsnippet 
 
 context math()
