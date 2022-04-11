@@ -30,6 +30,34 @@ endsnippet
 snippet _sec "section" bA
 \section{$1}$0
 endsnippet 
+snippet _s1 "section" bA
+\section{$1}$0
+endsnippet 
+
+snippet _ss "sub section" bA
+\subsection{$1}$0
+endsnippet 
+snippet _s2 "sub section" bA
+\subsection{$1}$0
+endsnippet 
+
+snippet _s3 "sub sub section" bA
+\subsubsection{$1}$0
+endsnippet 
+
+snippet _s4 "sub sub sub section" bA
+\subsubsubsection{$1}$0
+endsnippet 
+# PREAMBLE:
+# \setcounter{tocdepth}{4}
+# \setcounter{secnumdepth}{4}
+# \newcommand{\subsubsubsection}[1]{
+#     \paragraph{#1}
+# }
+
+snippet _para "paragraph" bA
+\paragraph{$1}$0
+endsnippet 
 
 snippet +sec "section*" bA
 \section*{$1}$0
@@ -40,13 +68,11 @@ snippet NN "newpage" bA
 endsnippet 
 
 snippet nn "vspace" bA
-\vspace{.1in}
-$0
+\vspace{.1in} $0
 endsnippet 
 
 snippet mm "small vspace" bA
-\vspace{.05in}
-$0
+\vspace{.05in} $0
 endsnippet 
 
 snippet _beg "begin{} / end{}" bA
@@ -54,6 +80,11 @@ snippet _beg "begin{} / end{}" bA
 	$3
 \end{$1} $0
 endsnippet
+
+context math()
+snippet \ds "display style" wA
+\displaystyle
+endsnippet 
 
 snippet fd "Inline Math" wA
 $${1}$`!p
@@ -64,10 +95,52 @@ else:
 `$2
 endsnippet
 
+snippet FD "Bold Inline Math" wA
+$\mathbf{${1}}$`!p
+if t[2] and t[2][0] not in [';',':', '\'', '/', '\\', '~', ',', '.', '?', '-', ' ', ')', '}', ']', ':']:
+	snip.rv = ' '
+else:
+	snip.rv = ''
+`$2
+endsnippet
+
+snippet df "Text" wA
+\text{$1}$0
+endsnippet 
+
+snippet DF "Boldface" wA
+\textbf{$1}$0
+endsnippet 
+
+snippet dmm "Display Math" bA
+\[
+	$1
+.\] $0
+endsnippet 
+
+snippet dmp "Display Math - comma (pause)" bA
+\[
+	$1
+,\] $0
+endsnippet 
+
+snippet dmt "Display Math - blank (em(p)tee)" bA
+\[
+	$1
+\] $0
+endsnippet 
+
 snippet kl "align*" bA
 \begin{align*}
 	$1
 \end{align*} $0
+endsnippet 
+
+# personally defined
+snippet uu "arrow itemize" bA
+\begin{Arrowify}
+	$1
+\end{Arrowify} $0
 endsnippet 
 
 snippet ii "enumerate" bA
@@ -176,47 +249,24 @@ context math()
 snippet <> "left right arrow" iA
 \leftrightarrow 
 endsnippet 
+snippet <> "left right arrow" iA
+$\leftrightarrow$
+endsnippet 
 
 context math()
 snippet << "left arrow" iA
 \leftarrow 
+endsnippet 
+snippet << "left arrow" iA
+$\leftarrow$
 endsnippet 
 
 context math()
 snippet >> "right arrow" iA
 \rightarrow
 endsnippet 
-
-snippet FD "Bold Inline Math" wA
-$\mathbf{${1}}$`!p
-if t[2] and t[2][0] not in [';',':', '\'', '/', '\\', '~', ',', '.', '?', '-', ' ', ')', '}', ']', ':']:
-	snip.rv = ' '
-else:
-	snip.rv = ''
-`$2
-endsnippet
-
-context math()
-snippet df "Text in Math" wA
-\text{$1} $0
-endsnippet 
-
-snippet dmm "Display Math" bA
-\[
-	$1
-.\] $0
-endsnippet 
-
-snippet dmp "Display Math - comma (pause)" bA
-\[
-	$1
-,\] $0
-endsnippet 
-
-snippet dmt "Display Math - blank (em(p)tee)" bA
-\[
-	$1
-\] $0
+snippet >> "right arrow" iA
+$\rightarrow$
 endsnippet 
 
 context math()
@@ -430,3 +480,29 @@ context math()
 snippet Col "Column space" iA
 \text{Col\,}$0
 endsnippet 
+
+
+### Theorem Environments
+snippet _def "definition" bA
+\begin{definition}$1
+	$2
+\end{definition}$0
+endsnippet
+
+snippet _ex "example" bA
+\begin{example}$1
+	$2
+\end{example}$0
+endsnippet 
+
+snippet _rem "remark" bA
+\begin{remark}$1
+	$2
+\end{remark}$0
+endsnippet 
+
+snippet _thm "theorem" bA
+\begin{theorem}
+	$1
+\end{theorem}$0
+endsnippet
